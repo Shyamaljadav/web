@@ -1170,7 +1170,7 @@ if menu_id =="crypto"or"gold"or"silver"or"oil"or"trend"or"rent"or"assist1"or"sum
 
     if choice == "Login":
         #st.subheader("If you came this far, then login and Explore more features...")
-        name, authentication_status, username = authenticator.login("If you came this far, then login and Explore more features...", 'main')
+        name, authentication_status, username = authenticator.login( 'main')#"If you came this far, then login and Explore more features...",
         if authentication_status:
             if 'abc' not in st.session_state:
                st.session_state['abc']= True
