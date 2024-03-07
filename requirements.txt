@@ -1,0 +1,17 @@
+wheel
+pycryptodome
+pyrebase4
+pystan
+prophet
+pandas
+pandas_datareader
+streamlit
+yfinance
+bs4
+requests
+newspaper3k
+nltk
+cufflinks
+matplotlib
+streamlit_option_menu
+streamlit_lottie

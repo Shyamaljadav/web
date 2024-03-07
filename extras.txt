@@ -1,0 +1,807 @@
+New api first try :
+
+ #url = f"https://newsapi.org/v2/everything?q=Stock Market&apikey=f960b5dd6c6f430e87d7c24d3ff71f29"
+    #r = requests.get(url)
+    #r = r.json()
+    #articles = r['articles']
+    #for article in articles:
+    #   st.header(article['title'])
+     #   st.write("Published At : " ,article['publishedAt'])
+      #  if article['author']:
+       #     st.write("Author : ",article['author'])
+        #st.write("Source : ",article['source']['name'])
+        #st.write(article['description'])
+        #st.write(article['url'])
+        #st.image(article['urlToImage'])
+        #st.write(article['content']) 
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCZ-4FMM2mY_Q8Qqi9t0N0CMTeTkmuLGZA",
+  authDomain: "assets-ai.firebaseapp.com",
+  projectId: "assets-ai",
+  storageBucket: "assets-ai.appspot.com",
+  messagingSenderId: "775392806417",
+  appId: "1:775392806417:web:34ed859d97136ce8ccd3b0",
+  measurementId: "G-TNZXSWZC06"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app); 
+
+users = dbl.fetch_all_users()
+
+usernames = [user["key"] for user in users]
+names = [user["name"] for user in users]
+#hashed_passwords = [user["password"] for user in users]
+passwords =[user["password"] for user in users]
+#credentials = {"usernames":{}}
+
+#authenticator = stauth.Authenticate(credentials, "app_home", "auth", cookie_expiry_days=30)
+
+def login_page():
+    with st.form("Login", clear_on_submit=True):
+        usernm = st.text_input('Username').lower()
+        #st.session_state['username'] = username
+        pwd = st.text_input('Password', type='password')
+        login_button= st.form_submit_button('Login')
+        #chkuser = db.get_user(users)
+        if login_button:
+            if usernm == usernames:
+                if pwd == passwords:
+                    st.session_state['logged in'] 
+                    return True
+                else:
+                    st.error("Password is in correct")
+                
+            else:
+                st.error("Username is incorrect.")
+    st.subheader("Don't have an account")
+    if st.button("SignUp"):
+        signup_page()
+
+    
+def signup_page():
+    
+    with st.form("SignUp", clear_on_submit=True):
+        usernm = st.text_input('Username').lower()
+        nm = st.text_input(' Account Name')
+        pwd = st.text_input('Password', type='password')
+        rpwd = st.text_input('Repeat password', type='password')
+        signup_button= st.form_submit_button('Register')
+        #chkuser = db.get_user(users)
+        if signup_button:
+            if len(usernm) and len(nm) and len(pwd) > 0:
+                if usernm not in usernames:
+                    if pwd == rpwd:                        
+                        dbl.insert_user(usernm, nm, pwd) 
+                        st.success("user register successfully")                               
+                    else:
+                        raise st.error('Passwords do not match')
+                else:
+                    raise st.error('Username already taken')
+            else:
+                raise st.error('Please enter an username, name, and password')
+
+selected = option_menu(
+    menu_title=None,
+    options=["Home","Stocks","Gold","Real Estate","Crypto Currency","Account",],
+    #icons=["house","bar-chart-fill","cash-coin","building","cash",],
+    orientation="horizontal",
+    styles={
+        "container":{"padding":"0!important", "background-color":"orange"},
+        "icon":{"color":"black", "font-size":"15px"},
+        "nav-link":{
+            "font-size":"15px",
+            "text-align":"center",
+            "margin":"0px",
+            "--hover-color":"#eee",
+        },
+        "nav-link-selected":{"background-color":"grey"},    
+        },
+    )
+
+selected = option_menu(
+    menu_title=None,
+    options=["Home","News","Currency Converter",],
+    icons=None,
+    orientation="horizontal",
+    styles={
+        "container":{"padding":"0!important", "background-color":"orange"},
+        "icon":{"color":"black", "font-size":"15px"},
+        "nav-link":{
+            "font-size":"15px",
+            "text-align":"center",
+            "margin":"0px",
+            "--hover-color":"#eee",
+        },
+        "nav-link-selected":{"background-color":"grey"},    
+        },
+    )
+
+ selected = option_menu(
+        menu_title=None,
+        options= ["Main","Pre","Sentiment"],
+    # icons=["pencil-fill","bar-chart-fill"],
+        orientation="horizontal",
+        styles={
+        "container":{"padding":"0!important", "background-color":"orange"},
+        "icon":{"color":"black", "font-size":"15px"},
+        "nav-link":{
+            "font-size":"18px",
+            "text-align":"center",
+            "margin":"0px",
+            "--hover-color":"#eee",
+        },
+        "nav-link-selected":{"background-color":"grey"},    
+        },
+    )
+
+selected = option_menu(
+            menu_title=None,
+            options= ["Price Trend","Rent"],
+            #icons=["pencil-fill","bar-chart-fill"],
+            orientation="horizontal",
+            styles={
+            "container":{"padding":"0!important", "background-color":"orange"},
+            "icon":{"color":"black", "font-size":"15px"},
+            "nav-link":{
+                "font-size":"18px",
+                "text-align":"center",
+                "margin":"0px",
+                "--hover-color":"#eee",
+            },
+            "nav-link-selected":{"background-color":"grey"},    
+            },
+        )
+
+selected = option_menu(
+        menu_title=None,
+        options= ["User","Dashboard","Help",],
+        #icons=["pencil-fill","bar-chart-fill"],
+        orientation="horizontal",
+        styles={
+        "container":{"padding":"0!important", "background-color":"orange"},
+        "icon":{"color":"black", "font-size":"15px"},
+        "nav-link":{
+            "font-size":"15px",
+            "text-align":"center",
+            "margin":"0px",
+            "--hover-color":"#eee",
+        },
+        "nav-link-selected":{"background-color":"grey"},    
+        },
+    )
+
+st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+            bio = st.radio('Jump to',['Home','Workplace Feeds', 'Settings'])
+
+    # SETTINGS PAGE 
+            if bio == 'Settings':  
+                # CHECK FOR IMAGE
+                nImage = db.child(user['localId']).child("Image").get().val()    
+                # IMAGE FOUND     
+                if nImage is not None:
+                    # We plan to store all our image under the child image
+                    Image = db.child(user['localId']).child("Image").get()
+                    for img in Image.each():
+                        img_choice = img.val()
+                        #st.write(img_choice)
+                    st.image(img_choice)
+                    exp = st.beta_expander('Change Bio and Image')  
+                    # User plan to change profile picture  
+                    with exp:
+                        newImgPath = st.text_input('Enter full path of your profile imgae')
+                        upload_new = st.button('Upload')
+                        if upload_new:
+                            uid = user['localId']
+                            fireb_upload = storage.child(uid).put(newImgPath,user['idToken'])
+                            a_imgdata_url = storage.child(uid).get_url(fireb_upload['downloadTokens']) 
+                            db.child(user['localId']).child("Image").push(a_imgdata_url)
+                            st.success('Success!')           
+                # IF THERE IS NO IMAGE
+                else:    
+                    st.info("No profile picture yet")
+                    newImgPath = st.text_input('Enter full path of your profile image')
+                    upload_new = st.button('Upload')
+                    if upload_new:
+                        uid = user['localId']
+                        # Stored Initated Bucket in Firebase
+                        fireb_upload = storage.child(uid).put(newImgPath,user['idToken'])
+                        # Get the url for easy access
+                        a_imgdata_url = storage.child(uid).get_url(fireb_upload['downloadTokens']) 
+                        # Put it in our real time database
+                        db.child(user['localId']).child("Image").push(a_imgdata_url)
+    # HOME PAGE
+            elif bio == 'Home':
+                col1, col2 = st.beta_columns(2)
+                
+                # col for Profile picture
+                with col1:
+                    nImage = db.child(user['localId']).child("Image").get().val()         
+                    if nImage is not None:
+                        val = db.child(user['localId']).child("Image").get()
+                        for img in val.each():
+                            img_choice = img.val()
+                        st.image(img_choice,use_column_width=True)
+                    else:
+                        st.info("No profile picture yet. Go to Edit Profile and choose one!")
+                    
+                    post = st.text_input("Let's share my current mood as a post!",max_chars = 100)
+                    add_post = st.button('Share Posts')
+                if add_post:   
+                    now = datetime.now()
+                    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")              
+                    post = {'Post:' : post,
+                            'Timestamp' : dt_string}                           
+                    results = db.child(user['localId']).child("Posts").push(post)
+                    st.balloons()
+
+                # This coloumn for the post Display
+                with col2:
+                    
+                    all_posts = db.child(user['localId']).child("Posts").get()
+                    if all_posts.val() is not None:    
+                        for Posts in reversed(all_posts.each()):
+                                #st.write(Posts.key()) # Morty
+                                st.code(Posts.val(),language = '') 
+    # WORKPLACE FEED PAGE
+            else:
+                all_users = db.get()
+                res = []
+                # Store all the users handle name
+                for users_handle in all_users.each():
+                    k = users_handle.val()["Handle"]
+                    res.append(k)
+                # Total users
+                nl = len(res)
+                st.write('Total users here: '+ str(nl)) 
+                
+                # Allow the user to choose which other user he/she wants to see 
+                choice = st.selectbox('My Collegues',res)
+                push = st.button('Show Profile')
+                
+                # Show the choosen Profile
+                if push:
+                    for users_handle in all_users.each():
+                        k = users_handle.val()["Handle"]
+                        # 
+                        if k == choice:
+                            lid = users_handle.val()["ID"]
+                            
+                            handlename = db.child(lid).child("Handle").get().val()             
+                            
+                            st.markdown(handlename, unsafe_allow_html=True)
+                            
+                            nImage = db.child(lid).child("Image").get().val()         
+                            if nImage is not None:
+                                val = db.child(lid).child("Image").get()
+                                for img in val.each():
+                                    img_choice = img.val()
+                                    st.image(img_choice)
+                            else:
+                                st.info("No profile picture yet. Go to Edit Profile and choose one!")
+    
+                            # All posts
+                            all_posts = db.child(lid).child("Posts").get()
+                            if all_posts.val() is not None:    
+                                for Posts in reversed(all_posts.each()):
+                                    st.code(Posts.val(),language = '')
+
+selected = option_menu(
+    menu_title=None,
+    options=["Home","News","Currency Converter",],
+    icons=None,
+    orientation="horizontal",
+    styles={
+        "container":{"padding":"0!important", "background-color":"orange"},
+        "icon":{"color":"black", "font-size":"15px"},
+        "nav-link":{
+            "font-size":"15px",
+            "text-align":"center",
+            "margin":"0px",
+            "--hover-color":"#eee",
+        },
+        "nav-link-selected":{"background-color":"grey"},    
+        },
+    )
+
+ global CNX
+    if (CNX is None):
+        config = ConfigParser()
+        config.read("config.ini")
+        _host = config.get('MySQL', 'host')
+        _port = config.get('MySQL', 'port')
+        _database = config.get('MySQL', 'database')
+        _user = config.get('MySQL', 'user')
+        _password = config.get('MySQL', 'password')
+        CNX = mysql.connector.connect(host=_host, database=_database,
+                                      user=_user, passwd=_password, port=_port)
+
+    with CNX.cursor() as cur:
+        return cur.callproc(query, args)
+    
+def show_signup():
+    userName = st.text_input (label="", value="", placeholder="Enter your username")
+    password = st.text_input (label="", value="",placeholder="Enter your password", type="password")
+    st.button ("signUp", on_click=signup_clicked, args= (userName, password))
+def signup_clicked(userName,password):
+    if signup(userName, password):
+        login_page()
+    else:
+        st.error("Invalid user name or password")
+
+def login_page():
+    st.title("Assets.AI")
+
+    def load_lottieurl(url):
+        r = requests.get(url)
+        if r.status_code != 200:
+            return None
+        return r.json()
+
+    lottie_coding_lo = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_gjmecwii.json")
+
+    left_column, right_column = st.columns(2)
+    with left_column:
+        
+        st_lottie(lottie_coding_lo, height=300, key="coding_lo")
+
+        st.subheader("Seems like you haven't logged in! Explore more features by Log in...")
+
+    with right_column:
+        
+        if st.session_state['logged'] == False:
+            userName = st.text_input (label="", value="", placeholder="Enter your user name")
+            password = st.text_input (label="", value="",placeholder="Enter password", type="password")
+            st.button ("Login", on_click=LoggedIn_Clicked, args= (userName, password))
+            st.write("Don't have an Account SignUp")
+            
+
+
+
+def LoggedOut_Clicked():
+    st.session_state['logged'] = False
+    
+def show_logout_page():
+    #loginSection.empty();
+    logOutSection = st.container()
+    with logOutSection:
+        st.button ("Log Out", key="logout", on_click=LoggedOut_Clicked)
+    
+def LoggedIn_Clicked(userName, password):
+    if login(userName, password):
+        st.session_state['logged'] = True
+    else:
+        st.session_state['logged'] = False;
+        st.error("Invalid user name or password")
+
+
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import auth
+import streamlit as st
+
+# Initialize the Firebase app
+cred = credentials.Certificate("C:/Users/Shyamal Jadav/Desktop/web/assets-ai-c6173-firebase-adminsdk-9wvgq-b18d00fb6a.json")
+if not firebase_admin._apps:
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': 'https://assets-ai-c6173-default-rtdb.firebaseio.com/'
+    })
+def signup():
+    # Get the user input for email and password
+    email = st.text_input("Email")
+    password = st.text_input("Password", type='password')
+    st.button("Signup")
+    # Create a new user account with the provided email and password
+    try:
+        user = auth.create_user(email=email, password=password)
+        st.success("Signup successful")
+    except  Exception as e:
+        st.error("Error creating user: {}".format(e))
+
+def login():
+    # Get the user input for email and password
+    email = st.text_input("Email", key="login-email")
+    password = st.text_input("Password", type='password', key="login-password")
+    st.button("Login")
+    # Verify the email and password
+    try:
+        user = auth.sign_in_with_email_and_password(email, password)
+        st.success("Login successful")
+    except Exception as e:
+        st.error("Error logging in: {}".format(e))
+
+# Show the login/signup page
+st.title("Login/Signup")
+
+
+signup()
+
+
+login()
+
+import streamlit as st
+from streamlit.components.v1 import html
+
+# Define your javascript
+my_js = """
+alert("Hola mundo");
+"""
+
+# Wrapt the javascript as html code
+my_html = f"<script>{my_js}</script>"
+
+# Execute your app
+st.title("Javascript example")
+html(my_html)
+
+from forex_python.converter import CurrencyRates
+
+c=CurrencyRates()
+
+amount=int(input("Enter the Amount:"))
+from_currency=input("From Currency:").upper()
+to_currency=input("To Currency:").upper()
+
+print(from_currency, "To", to_currency, amount)
+
+result=c.convert(from_currency, to_currency, amount)
+
+print(result)
+
+from forex_python.converter import CurrencyRates
+        from forex_python.converter import CurrencyCodes as cc
+        def load_lottieurl(url):
+            r = requests.get(url)
+            if r.status_code != 200:
+                return None
+            return r.json()
+
+        lc = load_lottieurl("https://assets8.lottiefiles.com/packages/lf20_bczqkp40.json")
+        st.markdown('<iframe src="https://embed.lottiesfiles.com/animation/9888"></iframe>', unsafe_allow_html=True)
+        c=CurrencyRates()
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            from_currency= st.text_input("From Currency:").upper() #st.selectbox(cc.get_currency_name())#st.selectbox('Currency 1',['EUR', 'USD', 'GBP'])
+        #with col2:
+            
+            # if curr1 == 'EUR':
+            #     st_lottie(lc,height=200,key="abc")
+            # elif curr1 == 'USD':
+            #     st.markdown('<iframe src="https://embed.lottiefiles.com/animation/89427"></iframe>', unsafe_allow_html=True)
+            # else:
+            #     st.markdown('<iframe src="https://embed.lottiefiles.com/animation/89429"></iframe>', unsafe_allow_html=True)
+        with col3:
+            #to_currency=st.selectbox(cc.get_currency_name())
+            to_currency=st.text_input("To Currency:").upper()
+            # curr2 =  st.selectbox('Currency 2',['USD', 'EUR', 'GBP'])
+
+        #url = f'https://free.currconv.com/api/v7/convert?q={curr1}_{curr2},{curr2}_{curr1}&compact=ultra&apiKey=[YOUR_API_KEY]'
+
+        # r = requests.get(url)
+        # r = r.json()
+        # one_two = r[f"{curr1}_{curr2}"]
+        # two_one = r[f"{curr2}_{curr1}"]
+
+        # col1, col2 = st.columns(2)
+        # with col1:
+        #     st.write(f"1 {curr1} to {curr2}")
+        #     st.success(one_two)
+        # with col2:
+        #     st.write(f"1 {curr2} to {curr1}")
+        #     st.success(two_one)
+
+        col1 ,col2 = st.columns(2)
+        with col1:
+            amount=int(st.number_input("Enter the Amount:"))#amt = st.number_input(curr1)
+        with col2:
+            result=c.convert(from_currency, to_currency,amount)    #converted = amt*one_two
+            st.text('Converted Amount')
+            st.success(result)
+
+{'id':"main",'label':"Main"},
+
+
+
+        # Define your javascript
+        my_js = """
+        // set endpoint and your API key
+            endpoint = 'convert';
+            access_key = 'API_KEY';
+
+            // define from currency, to currency, and amount
+            from = st.text_input(curr1);
+            to = st.text_input(curr2);
+            amount = st.number_input(amt);
+
+            // execute the conversion using the "convert" endpoint:
+            $.ajax({
+                url: 'https://data.fixer.io/api/' + endpoint + '?access_key=' + BgvHf7Kuy9FWFR644bq8SDK3Td5lOY6x +'&from=' + from + '&to=' + to + '&amount=' + amount,
+                dataType: 'jsonp',
+                success: function(json) {
+
+                    // access the conversion result in json.result
+                    alert(json.result);
+
+                }
+            });
+        """
+
+        # Wrapt the javascript as html code
+        my_html = f"<script>{my_js}</script>"
+
+        # Execute your app
+        #st.title("Javascript example")
+        html(my_html)
+
+
+ st.title('Currency Converter App')
+        st.markdown("""
+        This app interconverts the value of foreign currencies!
+        """)
+
+        #---------------------------------#
+        # Sidebar + Main panel
+        st.header('Input Options')
+
+        ## Sidebar - Currency price unit
+        currency_list = ['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'GBP', 'HKD', 'HRK', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'USD', 'ZAR']
+        base_price_unit = st.sidebar.selectbox('Select base currency for conversion', currency_list)
+        symbols_price_unit = st.sidebar.selectbox('Select target currency to convert to', currency_list)
+
+        # Retrieving currency data from ratesapi.io
+        # https://api.ratesapi.io/api/latest?base=USD&symbols=AUD
+        @st.cache
+        def load_data():
+            url = ''.join(['https://api.ratesapi.io/api/latest? access_key = BgvHf7Kuy9FWFR644bq8SDK3Td5lOY6x &base=', base_price_unit, '&symbols=', symbols_price_unit])
+            response = requests.get(url,verify=False)
+            data = response.json()
+            base_currency = pd.Series( data['base'], name='base_currency')
+            rates_df = pd.DataFrame.from_dict( data['rates'].items() )
+            rates_df.columns = ['converted_currency', 'price']
+            conversion_date = pd.Series( data['date'], name='date' )
+            df = pd.concat( [base_currency, rates_df, conversion_date], axis=1 )
+            return df
+
+        df = load_data()
+
+        st.header('Currency conversion')
+
+        st.write(df)
+
+
+    st.markdown('<iframe src="https://embed.lottiesfiles.com/animation/9888"></iframe>', unsafe_allow_html=True)
+        #c=CurrencyRates()
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            curr1= st.selectbox('Currency 1',['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'GBP', 'HKD', 'HRK', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'USD', 'ZAR'])
+        #with col2:
+            
+            # if curr1 == 'EUR':
+            #     st_lottie(lc,height=200,key="abc")
+            # elif curr1 == 'USD':
+            #     st.markdown('<iframe src="https://embed.lottiefiles.com/animation/89427"></iframe>', unsafe_allow_html=True)
+            # else:
+            #     st.markdown('<iframe src="https://embed.lottiefiles.com/animation/89429"></iframe>', unsafe_allow_html=True)
+        with col3:
+            #to_currency=st.selectbox(cc.get_currency_name())
+            #to_currency=st.text_input("To Currency:").upper()
+            curr2 =  st.selectbox('Currency 2',['AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'GBP', 'HKD', 'HRK', 'HUF', 'IDR', 'ILS', 'INR', 'ISK', 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN', 'RON', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'USD', 'ZAR'])
+
+        url = f'https://free.currconv.com/api/v7/convert?q={curr1}_{curr2},{curr2}_{curr1}&compact=ultra&apiKey=[YOUR_API_KEY]'
+
+        r = requests.get(url)
+        r = r.json()
+        one_two = r[f"{curr1}_{curr2}"]
+        two_one = r[f"{curr2}_{curr1}"]
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write(f"1 {curr1} to {curr2}")
+            st.success(one_two)
+        with col2:
+            st.write(f"1 {curr2} to {curr1}")
+            st.success(two_one)
+
+        col1 ,col2 = st.columns(2)
+        with col1:
+            amt = st.number_input(curr1)
+        with col2:
+            converted = amt*one_two
+            st.text('Converted Amount')
+            st.success(converted)
+
+
+
+html, body {
+  height: 100%;
+}
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  min-width: 300px;
+  min-height: 60px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+button::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0,255,203,.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button:hover, .button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+button:hover::before, button:focus::before {
+  opacity: 1;
+}
+
+button::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+button:hover::after, button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+
+
+<style>
+div.stButton > button{
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    color:#fff;
+    outline: 2px solid #7EFFB2;
+    padding: 30px 30px;
+    overflow: hidden;
+    transition: color 1s;
+}
+div.stButton > button{
+    color: #090909;
+}
+div.stButton > button::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50px;
+    z-index: -1;
+    width: 150%;
+    height: 100%;
+    background-color: white;
+    transform: scaleX(0) skewX(35deg);
+    transform-origin: left;
+    transition: transform 1s;
+}
+div.stButton > button:hover::before{
+    transform: scaleX(1) skewX(35deg);
+}
+<\style>
+
+
+st.markdown("""
+# <style>
+# button.pulse:hover, 
+# button.pulse:focus {
+#   animation: pulse 1s;
+#   box-shadow: 0 0 0 2em transparent;
+# }
+
+# @keyframes pulse {
+#   0% { box-shadow: 0 0 0 0 var(--hover); }
+# }
+# @each $button, $color in $colors {
+#   .#{$button} {
+#     --color: #{$color};
+#     --hover: #{adjust-hue($color, 45deg)};
+#   }
+# }
+# st.Button {  
+#   color: var(--color);
+#   transition: 0.25s;
+  
+#   &:hover,
+#   &:focus { 
+#     border-color: var(--hover);
+#     color: #fff;
+#   }
+# }
+
+# //=== Pen styling, ignore
+# body {
+#   color: #fff;
+#   background: hsl(227, 10%, 10%);
+#   font: 300 1em 'Fira Sans', sans-serif;
+  
+#   // Center everything ever
+#   justify-content: center;
+#   align-content: center;
+#   align-items: center;
+#   text-align: center;
+#   min-height: 100vh;
+#   display: flex;
+# }
+
+# // Basic button styles
+# st.Button {
+#   background: none;
+#   border: 2px solid;
+#   font: inherit;
+#   line-height: 1;
+#   margin: 0.5em;
+#   padding: 1em 2em;
+# }
+
+# h1 { font-weight: 400; }
+
+# code { 
+#   color: #e4cb58;
+#   font: inherit;
+# }
+# </style>""",unsafe_allow_html=True)

@@ -1,0 +1,23 @@
+1.streamlit authenticator
+-Email
+-Username
+-Name
+-Password
+
+2.firebase
+- Email Address
+-Password
+-Account Handle Name
+
+3.Deta.sh
+-month
+-Year
+-salary
+-other Income
+-stocks
+-gold
+-real estate
+-crypto
+-forex
+-cash
+-comment
