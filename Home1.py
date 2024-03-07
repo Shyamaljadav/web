@@ -1223,7 +1223,7 @@ if menu_id =="crypto"or"gold"or"silver"or"oil"or"trend"or"rent"or"assist1"or"sum
         try:
             if authenticator.register_user('Register user', preauthorization=False):
                 st.success('User registered successfully')
-                with open('C:/Users/Shyamal Jadav/Desktop/web/config.yaml', 'w') as file:
+                with open('config.yaml', 'w') as file:
                     yaml.dump(config, file, default_flow_style=False)
         except Exception as e:
             st.error(e)
