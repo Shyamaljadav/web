@@ -85,7 +85,7 @@ hide_streamlit_style = """
                 </style>
                 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-with open('C:/Users/Shyamal Jadav/Desktop/web/config.yaml') as file:
+with open('config.yaml') as file:
     config = yaml.load(file, Loader=yaml.SafeLoader)
 
 authenticator = stauth.Authenticate(
@@ -907,7 +907,7 @@ def home1():
                 try:
                     if authenticator.reset_password(username, 'Reset password'):
                         st.success('Password modified successfully')
-                        with open('C:/Users/Shyamal Jadav/Desktop/web/config.yaml', 'w') as file:
+                        with open('config.yaml', 'w') as file:
                             yaml.dump(config, file, default_flow_style=False)
                 except Exception as e:
                     st.error(e)
@@ -918,7 +918,7 @@ def home1():
                 username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
                 if username_forgot_pw:
                     st.success('New password sent securely')
-                    with open('C:/Users/Shyamal Jadav/Desktop/web/config.yaml', 'w') as file:
+                    with open('config.yaml', 'w') as file:
                         yaml.dump(config, file, default_flow_style=False)
                     # Random password to be transferred to user securely
                 else:
@@ -932,7 +932,7 @@ def home1():
                 username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
                 if username_forgot_username:
                     st.success('Username sent securely')
-                    with open('C:/Users/Shyamal Jadav/Desktop/web/config.yaml', 'w') as file:
+                    with open('config.yaml', 'w') as file:
                         yaml.dump(config, file, default_flow_style=False)
                     # Username to be transferred to user securely
                 else:
@@ -946,7 +946,7 @@ def home1():
                 try:
                     if authenticator.update_user_details(username, 'Update user details'):
                         st.success('Entries updated successfully')
-                        with open('C:/Users/Shyamal Jadav/Desktop/web/config.yaml', 'w') as file:
+                        with open('config.yaml', 'w') as file:
                             yaml.dump(config, file, default_flow_style=False)
                 except Exception as e:
                     st.error(e)        
