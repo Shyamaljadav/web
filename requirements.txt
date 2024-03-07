@@ -16,4 +16,4 @@ matplotlib
 streamlit_option_menu
 streamlit_lottie
 deta
-
+python-dotenv
