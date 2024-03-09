@@ -899,23 +899,30 @@ def home1():
         with col1:
             st.header("User Settings")
         with col3:
-            authenticator.logout('Logout', 'main')
+            st.text('Logout')
+            authenticator.logout('main')
         choice = st.selectbox("Select an option", menu)
         
         if choice=="Reset Password":
-            if authentication_status:
+            if st.session_state["authentication_status"]:
                 try:
-                    if authenticator.reset_password(username, 'Reset password'):
+                    if authenticator.reset_password(st.session_state["username"]):
                         st.success('Password modified successfully')
-                        with open('config.yaml', 'w') as file:
-                            yaml.dump(config, file, default_flow_style=False)
                 except Exception as e:
                     st.error(e)
+            # if authentication_status:
+            #     try:
+            #         if authenticator.reset_password(username):
+            #             st.success('Password modified successfully')
+            #             with open('config.yaml', 'w') as file:
+            #                 yaml.dump(config, file, default_flow_style=False)
+            #     except Exception as e:
+            #         st.error(e)
         
         
         elif choice=="Forget Password":
             try:
-                username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
+                username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password()
                 if username_forgot_pw:
                     st.success('New password sent securely')
                     with open('config.yaml', 'w') as file:
@@ -929,7 +936,7 @@ def home1():
         
         elif choice=="Forget Username":
             try:
-                username_forgot_username, email_forgot_username = authenticator.forgot_username('Forgot username')
+                username_forgot_username, email_forgot_username = authenticator.forgot_username()
                 if username_forgot_username:
                     st.success('Username sent securely')
                     with open('config.yaml', 'w') as file:
@@ -944,7 +951,7 @@ def home1():
         if choice=="Update Data":
             if authentication_status:
                 try:
-                    if authenticator.update_user_details(username, 'Update user details'):
+                    if authenticator.update_user_details():
                         st.success('Entries updated successfully')
                         with open('config.yaml', 'w') as file:
                             yaml.dump(config, file, default_flow_style=False)
