@@ -105,7 +105,7 @@ menu_data =[
     {'id':"commodity",'label':"Commodity",'submenu':[{'id':"gold",'label':"Gold"},{'id':"silver",'label':"Silver"},{'id':"oil",'label':"Oil",}]},
     {'id':"land",'label':"Real Estate",'submenu':[{'id':"trend",'label':"Price Trend"},{'id':"rent",'label':"Rent"},]},
     {'id':"crypto",'label':"Crypto Currency",},
-    {'id':"comm",'label':"Community",},
+    #{'id':"comm",'label':"Community",},
     {'id':"assist",'label':"Assistance",'submenu':[{'id':"assist1",'label':"Assistant"},{'id':"sum",'label':"Summarizer"}]},    
     {'id':"acc",'label':"Account",'submenu':[{'id':"user",'label':"User"},{'id':"help",'label':"Help"}],},
     #{'id':"lout",'label':"Logout",},{'id':"dashboard",'label':"Dashboard"},
@@ -1171,11 +1171,11 @@ def home1():
 
     #if menu_id =="lout":
         
-    if menu_id =="comm":
-        import streamlit as st
-        # if 'logged in' not in st.session_state:
-        #     st.session_state['logged in'] = False
-        show_login_page()
+    # if menu_id =="comm":
+    #     import streamlit as st
+    #     # if 'logged in' not in st.session_state:
+    #     #     st.session_state['logged in'] = False
+    #     show_login_page()
 
 if menu_id =="crypto"or"gold"or"silver"or"oil"or"trend"or"rent"or"assist1"or"sum"or"user"or"dashboard":
     menu = ["Login", "Sign Up"]
