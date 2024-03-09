@@ -949,14 +949,20 @@ def home1():
         
         
         if choice=="Update Data":
-            if authentication_status:
+            if st.session_state["authentication_status"]:
                 try:
-                    if authenticator.update_user_details():
+                    if authenticator.update_user_details(st.session_state["username"]):
                         st.success('Entries updated successfully')
-                        with open('config.yaml', 'w') as file:
-                            yaml.dump(config, file, default_flow_style=False)
                 except Exception as e:
-                    st.error(e)        
+                    st.error(e)
+            # if authentication_status:
+            #     try:
+            #         if authenticator.update_user_details():
+            #             st.success('Entries updated successfully')
+            #             with open('config.yaml', 'w') as file:
+            #                 yaml.dump(config, file, default_flow_style=False)
+            #     except Exception as e:
+            #         st.error(e)        
             
     if menu_id =="help":
         from help import show_help
