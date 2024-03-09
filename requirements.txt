@@ -20,3 +20,4 @@ python-dotenv
 hydralit-components
 streamlit-authenticator
 openai
+streamlit-chat
