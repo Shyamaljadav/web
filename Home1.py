@@ -900,7 +900,7 @@ def home1():
             st.header("User Settings")
         with col3:
             st.text('Logout')
-            authenticator.logout('main')
+            authenticator.logout()
         choice = st.selectbox("Select an option", menu)
         
         if choice=="Reset Password":
