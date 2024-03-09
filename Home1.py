@@ -899,7 +899,7 @@ def home1():
         with col1:
             st.header("User Settings")
         with col3:
-            st.text('Logout')
+            
             authenticator.logout()
         choice = st.selectbox("Select an option", menu)
         
