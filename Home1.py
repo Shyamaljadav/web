@@ -1193,7 +1193,7 @@ if menu_id =="crypto"or"gold"or"silver"or"oil"or"trend"or"rent"or"assist1"or"sum
             from datetime import date
             import datetime
             import yaml
-            import database as db
+            #import database as db
             import yfinance as yf 
             from prophet import Prophet
             from prophet.plot import plot_plotly
