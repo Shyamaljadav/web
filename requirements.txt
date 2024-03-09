@@ -19,3 +19,4 @@ deta
 python-dotenv
 hydralit-components
 streamlit-authenticator
+openai
