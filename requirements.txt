@@ -21,3 +21,4 @@ hydralit-components
 streamlit-authenticator
 openai
 streamlit-chat
+lxml[html_clean]

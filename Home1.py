@@ -15,6 +15,7 @@ import cufflinks as cf
 import json
 from PIL import Image
 from newspaper import Article
+from lxml_html_clean import clean_html
 from datetime import datetime as dt
 from urllib.request import urlopen,Request
 from bs4 import BeautifulSoup as soup
