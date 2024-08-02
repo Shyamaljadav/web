@@ -168,4 +168,9 @@ cython_debug/
 poetry.toml
 secrets.toml
 
+# Ignore configuration files
+config.yaml
+
+# Ignore JSON assets
+assets.json
 # End of https://www.toptal.com/developers/gitignore/api/python
