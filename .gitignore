@@ -169,8 +169,8 @@ poetry.toml
 secrets.toml
 
 # Ignore configuration files
-config.yaml
+web/config.yaml
 
 # Ignore JSON assets
-assets.json
+web/assets-ai-c6173-firebase-adminsdk-9wvgq-b18d00fb6a.json
 # End of https://www.toptal.com/developers/gitignore/api/python
