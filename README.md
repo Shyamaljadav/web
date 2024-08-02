@@ -28,22 +28,30 @@ To run this application locally, follow these steps:
 
 **Clone the repository:**
 
+```bash
 git clone https://github.com/Shyamaljadav/web.git
-
 cd web
-
+```
 **Create and activate a virtual environment:**
 
+```bash
 python3 -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+```
 
 **Install the required dependencies:**
 
+```bash
 pip install -r requirements.txt
+```
 
 **Run the application:**
 
+```bash
 streamlit run Home1.py
+```
+## Note:
+Few more modules are in progress in the current repo like grap for the stocks , community etc.
 
 ## Usage:
 
@@ -61,10 +69,12 @@ Once the application is running, you can access it in your web browser at http:/
 - Recognized with two state-level awards for innovation and impact in finance and technology.
 
 **Contribution**
+
 We welcome contributions to improve the platform. Feel free to open issues or submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
 
 **Contact**
+
 For questions or feedback, please contact Shyamal Jadav at shiv00jadav@gmail.com
 
 Join us in revolutionizing investment strategies and market analysis with our innovative platform!
