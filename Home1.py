@@ -1181,58 +1181,65 @@ def home1():
 if menu_id =="crypto"or"gold"or"silver"or"oil"or"trend"or"rent"or"assist1"or"sum"or"user"or"dashboard":
     menu = ["Login", "Sign Up"]
     choice = st.sidebar.selectbox("Select an option", menu)
-
+    
     if choice == "Login":
-        #st.subheader("If you came this far, then login and Explore more features...")
-        name, authentication_status, username = authenticator.login( 'main')#"If you came this far, then login and Explore more features...",
-        if authentication_status:
-            if 'abc' not in st.session_state:
-               st.session_state['abc']= True
-            import streamlit as st
-            from  streamlit_option_menu import option_menu
-            import pandas_datareader as data
-            from datetime import date
-            import datetime
-            import yaml
-            #import database as db
-            import yfinance as yf 
-            from prophet import Prophet
-            from prophet.plot import plot_plotly
-            from plotly import graph_objs as go
-            import requests
-            import pandas as pd 
-            import cufflinks as cf
-            import json
-            from PIL import Image
-            from newspaper import Article
-            from datetime import datetime as dt
-            from urllib.request import urlopen,Request
-            from bs4 import BeautifulSoup as soup
-            import io
-            from plotly import graph_objs as go
-            import plotly.express as px
-            from plotly.subplots import make_subplots
-            import nltk
-            import calendar
-            import pandas_datareader as pdr
-            import matplotlib.pyplot as plt
-            from datetime import datetime
-            import numpy as np
-            import os
-            from nltk.sentiment.vader import SentimentIntensityAnalyzer
-            nltk.downloader.download('vader_lexicon')
-            import subprocess
-            from streamlit_lottie import st_lottie
-            import lottie
-            import hydralit_components as hc
-            from login1 import show_login_page
-            import streamlit_authenticator as stauth
-            home1()
+        # Attempt to log in
+        result = authenticator.login('main')
+        
+        if result is not None:
+            name, authentication_status, username = result
             
-        elif authentication_status is False:
-            st.error('Username/password is incorrect')
-        elif authentication_status is None:
-            st.warning('Please enter your username and password')   
+            if authentication_status:
+                if 'abc' not in st.session_state:
+                    st.session_state['abc'] = True
+                
+                # Import necessary libraries only after successful login
+                import streamlit as st
+                from streamlit_option_menu import option_menu
+                import pandas_datareader as data
+                from datetime import date
+                import datetime
+                import yaml
+                import yfinance as yf 
+                from prophet import Prophet
+                from prophet.plot import plot_plotly
+                from plotly import graph_objs as go
+                import requests
+                import pandas as pd 
+                import cufflinks as cf
+                import json
+                from PIL import Image
+                from newspaper import Article
+                from datetime import datetime as dt
+                from urllib.request import urlopen, Request
+                from bs4 import BeautifulSoup as soup
+                import io
+                import plotly.express as px
+                from plotly.subplots import make_subplots
+                import nltk
+                import calendar
+                import pandas_datareader as pdr
+                import matplotlib.pyplot as plt
+                import numpy as np
+                import os
+                from nltk.sentiment.vader import SentimentIntensityAnalyzer
+                nltk.download('vader_lexicon')
+                import subprocess
+                from streamlit_lottie import st_lottie
+                import lottie
+                import hydralit_components as hc
+                from login1 import show_login_page
+                import streamlit_authenticator as stauth
+                
+                home1()
+            
+            elif authentication_status is False:
+                st.error('Username/password is incorrect')
+            elif authentication_status is None:
+                st.warning('Please enter your username and password')   
+        else:
+            st.warning('Login attempt returned no result. Please try again.')  # Handle None case
+        
     else:
         try:
             if authenticator.register_user(pre_authorization=config['pre-authorized']):
@@ -1241,6 +1248,7 @@ if menu_id =="crypto"or"gold"or"silver"or"oil"or"trend"or"rent"or"assist1"or"sum
                     yaml.dump(config, file, default_flow_style=False)
         except Exception as e:
             st.error(e)
+
 
     
          
