@@ -94,7 +94,7 @@ authenticator = stauth.Authenticate(
     config['cookie']['name'],
     config['cookie']['key'],
     config['cookie']['expiry_days'],
-    config['preauthorized']
+    
 )  
 
 # st.write("Dont have an acc Signup")
@@ -1235,7 +1235,7 @@ if menu_id =="crypto"or"gold"or"silver"or"oil"or"trend"or"rent"or"assist1"or"sum
             st.warning('Please enter your username and password')   
     else:
         try:
-            if authenticator.register_user(pre_authorization=False):
+            if authenticator.register_user(pre_authorization=config['pre-authorized']):
                 st.success('User registered successfully')
                 with open('config.yaml', 'w') as file:
                     yaml.dump(config, file, default_flow_style=False)
